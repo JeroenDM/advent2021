@@ -1,6 +1,6 @@
 use std::fs;
 
-static _TEST_INPUT : &str = r#"199
+static _TEST_INPUT: &str = r#"199
 200
 208
 210
@@ -11,16 +11,12 @@ static _TEST_INPUT : &str = r#"199
 260
 263"#;
 
-
 fn main() {
-
-    let str_to_i32 = |s: &str| s.to_string()
-        .trim()
-        .parse::<i32>()
-        .unwrap();
+    let str_to_i32 = |s: &str| s.to_string().trim().parse::<i32>().unwrap();
 
     // let result_1 = _TEST_INPUT
-    let result_1 = fs::read_to_string("data/day1.txt").unwrap()
+    let result_1 = fs::read_to_string("data/day1.txt")
+        .unwrap()
         .lines()
         .map(str_to_i32)
         .collect::<Vec<_>>() // How can I do lazy windows??
@@ -31,7 +27,8 @@ fn main() {
     println!("solution: {}", result_1);
 
     // let result_2 = _TEST_INPUT
-    let result_2 = fs::read_to_string("data/day1.txt").unwrap()
+    let result_2 = fs::read_to_string("data/day1.txt")
+        .unwrap()
         .lines()
         .map(str_to_i32)
         .collect::<Vec<_>>()
