@@ -14,14 +14,14 @@ static _TEST_INPUT: &str = r#"199
 fn main() {
     let str_to_i32 = |s: &str| s.to_string().trim().parse::<i32>().unwrap();
 
-    // let result_1 = _TEST_INPUT
-    let result_1 = fs::read_to_string("data/day1.txt")
-        .unwrap()
+    let result_1 = _TEST_INPUT
+    // let result_1 = fs::read_to_string("data/day1.txt")
+    //     .unwrap()
         .lines()
         .map(str_to_i32)
         .collect::<Vec<_>>() // How can I do lazy windows??
         .windows(2)
-        .map(|a| a[0] < a[1])
+        .map(|x| x[0] < x[1])
         .fold(0, |acc, x| acc + x as i32);
 
     println!("solution: {}", result_1);

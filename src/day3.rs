@@ -32,8 +32,37 @@ fn bin2dec(b: &[i32]) -> i32 {
         .fold(0, |acc, (i, x)| acc + x * 2_i32.pow(i as u32))
 }
 
+fn reduce_column(lines: Vec<Vec<i32>>, col_idx: usize) -> i32
+{
+    let num_digits = lines[0].len();
+
+    lines.iter().for_each(|line| println!("{:?}", line));
+    let column_sums = lines.iter().fold(vec![0; num_digits], |acc, x| add_vectors(&acc, &x));
+    println!("sums: {:?}", column_sums);
+
+    let select_bit = column_sums
+        .iter()
+        .map(|&x| x >= (lines.len() as i32 - x))
+        .map(|x| x as i32)
+        .nth(col_idx)
+        .unwrap();
+    println!("col {} gives {}", col_idx, select_bit);
+
+    let new_lines = lines.into_iter()
+        .filter(|x| x[col_idx] == select_bit)
+        .collect::<Vec<_>>();
+
+    if new_lines.len() > 1 && col_idx + 1 <  num_digits {
+        reduce_column(new_lines, col_idx+1)
+    }
+    else {
+        return bin2dec(&new_lines[0]);
+    }
+}
+
 fn main() {
-    let input = fs::read_to_string("data/day3.txt").unwrap();
+    // let input = fs::read_to_string("data/day3.txt").unwrap();
+    let input = _TEST_INPUT;
 
     let num_digits = input.lines().next().unwrap().len();
     let num_lines = input.lines().count() as i32;
@@ -55,5 +84,9 @@ fn main() {
         .map(|x| x as i32)
         .collect::<Vec<_>>();
 
-    println!("solution: {}", bin2dec(&gamma) * bin2dec(&epsilon));
+    // println!("solution: {}", bin2dec(&gamma) * bin2dec(&epsilon));
+
+    let data: Vec<_> = input.lines().map(parse_line).collect();
+
+    println!("solution 2: {}", reduce_column(data, 0));
 }
