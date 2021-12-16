@@ -15,8 +15,8 @@ fn main() {
     let str_to_i32 = |s: &str| s.to_string().trim().parse::<i32>().unwrap();
 
     let result_1 = _TEST_INPUT
-    // let result_1 = fs::read_to_string("data/day1.txt")
-    //     .unwrap()
+        // let result_1 = fs::read_to_string("data/day1.txt")
+        //     .unwrap()
         .lines()
         .map(str_to_i32)
         .collect::<Vec<_>>() // How can I do lazy windows??

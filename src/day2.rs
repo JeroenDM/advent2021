@@ -18,9 +18,7 @@ fn main() {
         .unwrap()
         .lines()
         // Lazy but ugly?
-        .map(|line| line
-            .split(' ')
-            .collect::<Vec<_>>())
+        .map(|line| line.split(' ').collect::<Vec<_>>())
         // Chunks chunk!
         // .flat_map(|line| line.split(' '))
         // .collect::<Vec<_>>()
