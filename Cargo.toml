@@ -3,6 +3,10 @@ name = "advent"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "advent"
+path = "src/lib.rs"
+
 [[bin]]
 name = "day1"
 path = "src/day1.rs"
@@ -23,3 +27,4 @@ path = "src/day4.rs"
 
 [dependencies]
 itertools = "*"
+nalgebra = "*" 
